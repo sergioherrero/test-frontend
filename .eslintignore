@@ -1,0 +1,13 @@
+node_modules/
+coverage/
+build/
+config/
+package.json
+*.css
+reportWebVitals.ts
+tsconfig.json
+vite.config.js
+setupTests.ts
+getEnviroments.js
+jest.config.js
+jest.setup.js

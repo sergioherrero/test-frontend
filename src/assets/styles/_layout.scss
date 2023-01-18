@@ -1,0 +1,37 @@
+@import 'assets/styles/_constants';
+@import 'assets/styles/_mixins';
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $gray-700;
+
+  > div#root {
+    @include flex-column;
+    min-height: 100vh;
+
+    header,
+    footer,
+    main {
+      flex-shrink: 0;
+    }
+
+    header {
+      z-index: 1010;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    main {
+      flex-grow: 1;
+    }
+
+    footer {
+      justify-self: flex-end;
+    }
+  }
+}

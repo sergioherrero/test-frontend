@@ -1,0 +1,19 @@
+@import 'assets/styles/_constants';
+@import 'assets/styles/_mixins';
+
+.custom-button {
+  text-decoration: none;
+  @include default-transition;
+  @include flex-center;
+
+  .button-prefix {
+    margin-right: $size-md;
+  }
+  .button-suffix {
+    margin-left: $size-md;
+  }
+
+  .button-text {
+    width: max-content;
+  }
+}

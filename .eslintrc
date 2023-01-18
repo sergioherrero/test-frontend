@@ -1,0 +1,123 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true,
+    "jest/globals": true,
+    "node": true
+  },
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:eslint-comments/recommended",
+    "plugin:import/typescript",
+    "plugin:jest/recommended",
+    "plugin:jest/style",
+    "plugin:prettier/recommended",
+    "plugin:promise/recommended",
+    "plugin:react/recommended",
+    "plugin:testing-library/react"
+  ],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": 2,
+    "@typescript-eslint/no-useless-constructor": 2,
+    "@typescript-eslint/no-shadow": ["error"],
+    "no-shadow": "off",
+    "arrow-body-style": [2, "as-needed"],
+    "camelcase": 1,
+    "import/no-dynamic-require": 1,
+    "import/no-named-as-default": 1,
+    "import/no-webpack-loader-syntax": 1,
+    "import/prefer-default-export": 0,
+    "import/extensions": 0,
+    "import/no-unresolved": [1, { "commonjs": true, "amd": true }],
+    "import/named": 1,
+    "import/namespace": 1,
+    "import/default": 1,
+    "import/export": 1,
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.*", "**/*.stories.*"]}],
+    "import/order": [
+      2,
+      {
+        "groups": ["external", "internal", "builtin", "parent", "sibling", "index"],
+        "pathGroups": [
+          {
+            "pattern": "*(!config|axios|classnames|date-fns|intl*|react*|yup)",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "*(lodash|react*|@testing-library)/**/*",
+            "group": "external",
+            "position": "after"
+          },
+          { "pattern": "assets/**/*", "group": "internal", "position": "before" },
+          { "pattern": "i18n/*", "group": "internal", "position": "before" },
+          { "pattern": "utils/**/*", "group": "internal", "position": "before" },
+          { "pattern": "reducers/**/*", "group": "internal", "position": "before" },
+          { "pattern": "model/dto/**/*", "group": "internal", "position": "before" },
+          { "pattern": "model/enums/**/*", "group": "internal", "position": "before" },
+          { "pattern": "model/types/**/*", "group": "internal", "position": "before" },
+          { "pattern": "model/**/*", "group": "internal", "position": "before" },
+          { "pattern": "components/base/**/*", "group": "internal", "position": "before" },
+          { "pattern": "components/**/*", "group": "internal", "position": "before" }
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "linebreak-style": [2, "unix"],
+    "no-confusing-arrow": 0,
+    "no-underscore-dangle": 2,
+    "no-plusplus": "off",
+    "prefer-destructuring": 1,
+    "react/destructuring-assignment": 0,
+    "react/function-component-definition": 0,
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".tsx"] }],
+    "react/jsx-first-prop-new-line": [2, "multiline"],
+    "react/jsx-fragments": [2, "element"],
+    "react/jsx-key": [2, { "checkFragmentShorthand": true }],
+    "react/jsx-props-no-spreading": [
+      1,
+      {
+        "html": "enforce",
+        "custom": "enforce",
+        "explicitSpread": "enforce",
+        "exceptions": ["input", "textarea", "table", "tr", "th", "tbody", "td"]
+      }
+    ],
+    "react/jsx-sort-props": 2,
+    "react/no-did-update-set-state": 0,
+    "react/static-property-placement": [2, "static public field"],
+    "react-hooks/exhaustive-deps": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "rules": {
+        "no-undef": ["off"],
+        "react/prop-types": ["off"]
+      }
+    }
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  }
+}
