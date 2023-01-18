@@ -1,5 +1,3 @@
-import axios from 'config/axios';
-
 type ApiType = {
   [key: string]: () => string;
 };

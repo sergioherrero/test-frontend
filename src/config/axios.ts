@@ -57,4 +57,4 @@ const onRejectedRequest = (error: Error) => error;
 axiosInstance.interceptors.request.use(requestInterceptor, onRejectedRequest);
 axiosInstance.interceptors.response.use(onFulfilledResponse, onRejectedResponse);
 
-export default axiosInstance
+export default axiosInstance;
