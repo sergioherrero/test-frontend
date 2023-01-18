@@ -10,9 +10,7 @@ const StatusCode = {
   InternalServerError: 500,
 };
 
-const onFulfilledResponse = (response: AxiosResponse) => {
-  return response;
-};
+const onFulfilledResponse = (response: AxiosResponse) => response;
 
 const onRejectedResponse = (error: AxiosError) => {
   if (error?.response?.status) {
@@ -54,9 +52,9 @@ const requestInterceptor = (config: AxiosRequestConfig) => {
   return newConfig;
 };
 
-const requestErrorHandler = (error: Error) => Promise.reject(error);
+const onRejectedRequest = (error: Error) => error;
 
-axiosInstance.interceptors.request.use(requestInterceptor, requestErrorHandler);
+axiosInstance.interceptors.request.use(requestInterceptor, onRejectedRequest);
 axiosInstance.interceptors.response.use(onFulfilledResponse, onRejectedResponse);
 
-export default axiosInstance;
+export default axiosInstance
