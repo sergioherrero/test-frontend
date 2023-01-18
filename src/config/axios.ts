@@ -6,12 +6,9 @@ const StatusCode = {
   Unauthorized: 401,
   Forbidden: 403,
   UnprocessableEntity: 422,
-  EkonError: 424,
   TooManyRequests: 429,
   InternalServerError: 500,
 };
-
-/* ~~~~~~~~~~ RESPONSE ~~~~~~~~~~ */
 
 const onFulfilledResponse = (response: AxiosResponse) => {
   return response;
@@ -25,8 +22,6 @@ const onRejectedResponse = (error: AxiosError) => {
       // TODO: Handle
     } else if (error.response.status === StatusCode.UnprocessableEntity) {
       // TODO: Handle
-    } else if (error.response.status === StatusCode.EkonError) {
-      throw error;
     } else if (error.response.status === StatusCode.TooManyRequests) {
       // TODO: Handle
     } else if (error.response.status === StatusCode.InternalServerError) {
@@ -59,7 +54,6 @@ axiosInstance.interceptors.request.use(
     }
     return newConfig;
   },
-
   (error: Error) => Promise.reject(error),
 );
 
