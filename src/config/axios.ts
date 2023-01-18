@@ -42,21 +42,21 @@ const initializeAxios = (token?: string) =>
 
 const axiosInstance = initializeAxios();
 
-axiosInstance.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
-    const token = getToken() || '';
-    const newConfig = { ...(config || {}) };
+const requestInterceptor = (config: AxiosRequestConfig) => {
+  const token = getToken() || '';
+  const newConfig = { ...(config || {}) };
 
-    if (token && config.headers) {
-      (config.headers as AxiosHeaders).set('Authorization', token);
-    } else {
-      delete axios.defaults.headers.common.Authorization;
-    }
-    return newConfig;
-  },
-  (error: Error) => Promise.reject(error),
-);
+  if (token && config.headers) {
+    (config.headers as AxiosHeaders).set('Authorization', token);
+  } else {
+    delete axios.defaults.headers.common.Authorization;
+  }
+  return newConfig;
+};
 
+const requestErrorHandler = (error: Error) => Promise.reject(error);
+
+axiosInstance.interceptors.request.use(requestInterceptor, requestErrorHandler);
 axiosInstance.interceptors.response.use(onFulfilledResponse, onRejectedResponse);
 
 export default axiosInstance;
