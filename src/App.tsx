@@ -1,11 +1,10 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { Route, Routes } from 'react-router-dom';
 
-import config from 'config';
+import Routes from 'components/Routes';
+
 import axiosInstance from 'config/axios';
 import { useAppContext } from 'hooks/useAppContext';
-import LandingPage from 'pages/Landing';
 
 const App = () => {
   const { loading } = useAppContext();
@@ -21,9 +20,7 @@ const App = () => {
         // TODO: Add loader component
         <div>LOADING...</div>
       ) : (
-        <Routes>
-          <Route element={<LandingPage />} path={config.url.landing} />
-        </Routes>
+        <Routes />
       )}
     </main>
   );
