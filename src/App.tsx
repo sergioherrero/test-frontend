@@ -1,15 +1,20 @@
 import React from 'react';
-import { useQuery } from 'react-query';
+
+import { CollectionName } from 'model/enums/CollectionName';
+
+import { ConfigFeatureFlag } from 'model/type/ConfigFeatureFlag';
 
 import Routes from 'components/Routes';
 
-import axiosInstance from 'config/axios';
+import config from 'config';
 import { useAppContext } from 'hooks/useAppContext';
+import useFetch from 'hooks/useFetch';
 
 const App = () => {
   const { loading } = useAppContext();
-  const { isLoading, data } = useQuery('repoConfig', () =>
-    axiosInstance.get('feature-flag/master'),
+  const { data, isLoading } = useFetch<ConfigFeatureFlag>(
+    CollectionName.room,
+    config.api.config.getConfig,
   );
 
   return (

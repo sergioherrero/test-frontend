@@ -9,9 +9,10 @@ import useFetch from 'hooks/useFetch';
 
 const LandingPage: FC = () => {
   const { data, isLoading } = useFetch<RoomModel[]>(
-    CollectionName.room,
-    config.api.room.getRooms(),
+    CollectionName.config,
+    config.api.room.getRooms,
   );
+
   return (
     <div id="landing-page">
       <h2 style={{ borderBottom: '1px solid black' }}>LANDING PAGE</h2>

@@ -1,13 +1,17 @@
+import { AxiosPromise } from 'axios';
+
+import axiosInstances from './axios';
+
 type ApiType = {
-  [key: string]: () => string;
+  [key: string]: () => AxiosPromise;
 };
 
 const config: ApiType = {
-  getConfig: () => '8888/fleature-flag/master',
+  getConfig: () => axiosInstances.config.get('feature-flag/master'),
 };
 
 const room: ApiType = {
-  getRooms: () => 'rooms',
+  getRooms: () => axiosInstances.room.get('rooms'),
 };
 
 const api = {

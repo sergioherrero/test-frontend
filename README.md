@@ -15,7 +15,8 @@ Create a .env file with the following content:
 
 ```
 EXTEND_ESLINT=true
-VITE_API_URL=https://url-to-be-defined
+REACT_APP_CONFIG_API_URL=http://localhost:8888
+REACT_APP_ROOM_API_URL=http://localhost:8083
 ```
 
 ### Installing

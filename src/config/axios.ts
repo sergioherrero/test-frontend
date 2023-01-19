@@ -1,4 +1,10 @@
-import axios, { AxiosError, AxiosHeaders, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, {
+  AxiosError,
+  AxiosHeaders,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from 'axios';
 
 import { getToken } from 'config/localStorage';
 
@@ -30,15 +36,18 @@ const onRejectedResponse = (error: AxiosError) => {
   return Promise.reject(error);
 };
 
-const initializeAxios = (token?: string) =>
+const initializeAxios = (baseURL: string, token?: string) =>
   axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
+    baseURL,
     headers: {
       Authorization: token || getToken() || '',
     },
   });
 
-const axiosInstance = initializeAxios();
+const axiosInstances: Record<string, AxiosInstance> = {
+  config: initializeAxios(`${process.env.REACT_APP_CONFIG_API_URL}`),
+  room: initializeAxios(`${process.env.REACT_APP_ROOM_API_URL}`),
+};
 
 const requestInterceptor = (config: AxiosRequestConfig) => {
   const token = getToken() || '';
@@ -54,7 +63,9 @@ const requestInterceptor = (config: AxiosRequestConfig) => {
 
 const onRejectedRequest = (error: Error) => error;
 
-axiosInstance.interceptors.request.use(requestInterceptor, onRejectedRequest);
-axiosInstance.interceptors.response.use(onFulfilledResponse, onRejectedResponse);
+Object.keys(axiosInstances).forEach((instanceName) => {
+  axiosInstances[instanceName].interceptors.request.use(requestInterceptor, onRejectedRequest);
+  axiosInstances[instanceName].interceptors.response.use(onFulfilledResponse, onRejectedResponse);
+});
 
-export default axiosInstance;
+export default axiosInstances;
