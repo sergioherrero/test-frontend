@@ -4,8 +4,22 @@ import { CollectionName } from 'model/enums/CollectionName';
 
 import { RoomModel } from 'model/type/Room';
 
+import HasPermission from 'components/base/HasPermission';
+
 import config from 'config';
 import useFetch from 'hooks/useFetch';
+
+const RoomsEnabled: FC = () => (
+  <HasPermission expectedValue="true" propName="webpanel.room.enabled">
+    <div>Has rooms enabled</div>
+  </HasPermission>
+);
+
+const RoomsDisabled: FC = () => (
+  <HasPermission expectedValue="false" propName="webpanel.room.enabled">
+    <div>Has rooms disabled</div>
+  </HasPermission>
+);
 
 const LandingPage: FC = () => {
   const { data, isLoading } = useFetch<RoomModel[]>(
@@ -25,6 +39,8 @@ const LandingPage: FC = () => {
             <span>Number: {room.roomNumber}</span>
           </div>
         ))}
+      <RoomsEnabled />
+      <RoomsDisabled />
     </div>
   );
 };
