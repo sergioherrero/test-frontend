@@ -1,9 +1,11 @@
 import { render } from '@testing-library/react';
-import React, { ReactNode } from 'react';
+import React from 'react';
+
+import { Children } from 'model/types/Children';
 
 import ErrorBoundary from '.';
 
-const setup = (children: ReactNode) => {
+const setup = (children: Children) => {
   const view = render(<ErrorBoundary>{children}</ErrorBoundary>);
 
   return {

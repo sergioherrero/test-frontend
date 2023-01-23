@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { CollectionName } from 'model/enums/CollectionName';
 
-import { ConfigFeatureFlag } from 'model/type/ConfigFeatureFlag';
+import { ConfigFeatureFlag } from 'model/types/ConfigFeatureFlag';
 
 import config from 'config';
 import useFetch from 'hooks/useFetch';

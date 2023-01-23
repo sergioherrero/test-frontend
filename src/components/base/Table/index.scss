@@ -1,0 +1,112 @@
+@import 'assets/styles/_constants';
+@import 'assets/styles/_mixins';
+
+.custom-table {
+  display: flex;
+  flex-direction: column;
+
+  > div:not(.pagination) {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+  }
+  table {
+    overflow: visible;
+    width: 100%;
+
+    thead,
+    tbody {
+      tr {
+        th,
+        td {
+          padding: $size-md $size-lg;
+          font-size: $font-md;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          max-width: calc(100vw / 4);
+          height: rem(54);
+
+          &:not(.collapse-text) {
+            overflow: hidden;
+          }
+
+          &.hidden {
+            display: none;
+          }
+
+          &.collapse-text {
+            .tooltip-children > * {
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+            }
+          }
+        }
+      }
+    }
+    thead {
+      border-bottom: 1px solid $primary;
+      tr {
+        th {
+          color: $primary;
+          font-weight: bold;
+
+          .sort-header {
+            white-space: nowrap;
+            svg {
+              @include default-transition;
+              height: $size-lg;
+
+              &.inverted-icon {
+                transform: rotate(180deg);
+              }
+
+              &.not-sorted {
+                height: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        &:not(:last-child) {
+          border-bottom: 1px solid $gray-300;
+        }
+      }
+    }
+    tfoot {
+      border-top: 1px solid $gray-300;
+      width: 100%;
+      tr {
+        td {
+          > .pagination {
+            display: flex;
+            align-items: center;
+            padding: $size-md;
+
+            > *:not(:last-child) {
+              margin-right: $size-md;
+            }
+
+            @media screen and (max-width: $screen-md) {
+              flex-direction: column;
+              > *:not(:last-child) {
+                margin-right: 0;
+                margin-top: $size-md;
+              }
+            }
+
+            @media screen and (max-width: $screen-sm) {
+              flex-direction: row;
+              > *:not(:last-child) {
+                margin-right: $size-sm;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

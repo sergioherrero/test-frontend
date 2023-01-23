@@ -1,7 +1,9 @@
 import { ReactElement } from 'react';
 
+import { Children } from 'model/types/Children';
+
 export type ButtonProps = {
-  children?: ReactElement;
+  children?: Children;
   className?: string;
   color?: 'primary' | 'secondary' | 'transparent';
   disabled?: boolean;

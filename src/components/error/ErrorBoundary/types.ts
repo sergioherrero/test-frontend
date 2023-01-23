@@ -1,4 +1,6 @@
-import { ErrorInfo, ReactNode } from 'react';
+import { ErrorInfo } from 'react';
+
+import { Children } from 'model/types/Children';
 
 export type ErrorBoundaryState = {
   error?: Error;
@@ -6,5 +8,5 @@ export type ErrorBoundaryState = {
 };
 
 export type ErrorBoundaryProps = {
-  children: ReactNode;
+  children: Children;
 };

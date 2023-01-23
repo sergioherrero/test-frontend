@@ -2,9 +2,10 @@ import React, { FC } from 'react';
 
 import { CollectionName } from 'model/enums/CollectionName';
 
-import { RoomModel } from 'model/type/Room';
+import { RoomModel } from 'model/types/Room';
 
 import HasPermission from 'components/base/HasPermission';
+import Table from 'components/base/Table';
 
 import config from 'config';
 import useFetch from 'hooks/useFetch';
@@ -30,15 +31,30 @@ const LandingPage: FC = () => {
   return (
     <div id="landing-page">
       <h2 style={{ borderBottom: '1px solid black' }}>LANDING PAGE</h2>
-      <div>{isLoading && <div>LOADING...</div>}</div>
-      {!!data &&
-        data.length > 0 &&
-        data.map((room: RoomModel) => (
-          <div key={room.roomId} style={{ borderBottom: '1px solid black', display: 'flex' }}>
-            <h3 style={{ marginRight: 10 }}>{room.name}</h3>
-            <span>Number: {room.roomNumber}</span>
-          </div>
-        ))}
+      <Table<RoomModel>
+        columns={[
+          {
+            accessor: 'name',
+            Header: 'Room Name',
+            filterable: true,
+            sortable: true,
+          },
+          {
+            accessor: 'roomNumber',
+            Header: 'Room Number',
+            filterable: true,
+            sortable: true,
+          },
+          {
+            accessor: 'bedInfo',
+            Header: 'Bed info',
+            filterable: true,
+            sortable: true,
+          },
+        ]}
+        data={data || []}
+        loading={isLoading}
+      />
       <RoomsEnabled />
       <RoomsDisabled />
     </div>

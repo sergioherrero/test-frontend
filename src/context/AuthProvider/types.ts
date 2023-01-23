@@ -1,5 +1,5 @@
-import { ReactElement } from 'react';
+import { Children } from 'model/types/Children';
 
 export type AuthProviderProps = {
-  children?: ReactElement | ReactElement[];
+  children?: Children;
 };
